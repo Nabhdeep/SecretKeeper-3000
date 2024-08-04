@@ -1,3 +1,3 @@
 export const defaultValues = {
-    BASEURI:  "http://localhost:9000/"
+    BASEURI:  "https://secretkeeper-3000.onrender.com"
 }
