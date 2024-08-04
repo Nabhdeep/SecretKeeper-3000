@@ -1,21 +1,20 @@
 :root {
   /* Light mode variables */
-  --bg-color: #e5ecf5;
+  --bg-color: #90b9e2;
   --card-bg-color: white;
   --text-color: #333;
   --input-border-color: #ddd;
   --button-bg-color: #fce4ec;
-  --button-text-color: #e91e1e;
+  --button-text-color: #141212;
 }
 
 .dark-mode {
-  /* Dark mode variables */
   --bg-color: #121212;
   --card-bg-color: #1e1e1e;
   --text-color: #e0e0e0;
   --input-border-color: #444;
   --button-bg-color: #c51111;
-  --button-text-color: #bedde7;
+  --button-text-color: #0e1010;
 }
 
 body {
@@ -26,7 +25,7 @@ body {
 
 .enigma {
   background-color: var(--card-bg-color);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 textarea, input, select {

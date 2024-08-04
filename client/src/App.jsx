@@ -3,6 +3,7 @@ import QRCode from 'qrcode.react';
 import {encryptMessage , generateID, hashSHA256 } from './utils/index.js'
 import './App.css';
 import { sendSecret } from './services/index.js';
+import DarkModeSwitch from './DarkModeSwitch.jsx';
 
 function App() {
   const [secret, setSecret] = useState('');
@@ -12,6 +13,8 @@ function App() {
   const [generatedLink, setGeneratedLink] = useState('');
   const [showResult, setShowResult] = useState(false);
   const [error, setError] = useState('');
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
 
 
   const handleGenerateLink = () => {
@@ -67,6 +70,10 @@ function App() {
         return 60
     }
   }
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+    document.body.classList.toggle('dark-mode');
+  };
 
   if (showResult) {
     return (
@@ -90,8 +97,9 @@ function App() {
 
   return (
     <div className="app">
+      <DarkModeSwitch isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
       <div className="enigma">
-        <h1>SecretKeeper 3000 <span className="home-icon">⌂</span></h1>
+        <h1>SecretKeeper 3000</h1>
         <textarea
           placeholder="Enter your secret here..."
           value={secret}
@@ -110,10 +118,23 @@ function App() {
           <div className="option">
             <label>Max Views</label>
             <input
-              type="number"
-              value={maxViews}
-              onChange={(e) => setMaxViews(e.target.value)}
-            />
+                  type="number"
+                  value={maxViews}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    if (value > 10) {
+                      setError("Max Views Can't be more than 10.");
+                    } else if (value < 0) {
+                      setError("Max Views can't be negative.");
+                    } else {
+                      setMaxViews(value);
+                      setError(""); 
+                    }
+                  }}
+                  style={{ appearance: 'textfield' }}
+                  min="0"
+                  max="10"
+                />
           </div>
         </div>
         <div className="password-option">
