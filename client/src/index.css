@@ -1,0 +1,41 @@
+:root {
+  /* Light mode variables */
+  --bg-color: #e5ecf5;
+  --card-bg-color: white;
+  --text-color: #333;
+  --input-border-color: #ddd;
+  --button-bg-color: #fce4ec;
+  --button-text-color: #e91e1e;
+}
+
+.dark-mode {
+  /* Dark mode variables */
+  --bg-color: #121212;
+  --card-bg-color: #1e1e1e;
+  --text-color: #e0e0e0;
+  --input-border-color: #444;
+  --button-bg-color: #c51111;
+  --button-text-color: #bedde7;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.enigma {
+  background-color: var(--card-bg-color);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+textarea, input, select {
+  background-color: var(--card-bg-color);
+  color: var(--text-color);
+  border-color: var(--input-border-color);
+}
+
+button {
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
+}
