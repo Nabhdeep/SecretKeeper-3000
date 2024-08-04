@@ -78,8 +78,9 @@ function App() {
   if (showResult) {
     return (
       <div className="app">
+         <DarkModeSwitch isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
         <div className="enigma">
-          <h1>SecretKeeper 3000 <span className="home-icon" onClick={handleBack}>⌂</span></h1>
+          <h1>SecretKeeper 3000 </h1>
           <div className="result-container">
             <h2>Your Secret Link:</h2>
             <p className="generated-link">{generatedLink}</p>

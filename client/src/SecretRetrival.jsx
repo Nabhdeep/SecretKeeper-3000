@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { decryptMessage, hashSHA256 } from './utils';
 import { getSecret } from './services';
+import DarkModeSwitch from './DarkModeSwitch';
 
 
 function SecretRetrieval({ secretId }) {
@@ -11,6 +12,7 @@ function SecretRetrieval({ secretId }) {
   const [isPasswordRequired, setIsPasswordRequired] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(()=>{
     setKey(window.location.hash.slice(1,window.location.hash.length))
@@ -21,6 +23,10 @@ function SecretRetrieval({ secretId }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     retrieveSecret();
+  };
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+    document.body.classList.toggle('dark-mode');
   };
 
   const retrieveSecret = () => {
@@ -52,25 +58,37 @@ function SecretRetrieval({ secretId }) {
 
   if (secret) {
     return (
-      <div className="secret-display">
-        <p style={{padding:'10px'}}>{secret}</p>
+      <div className="app">
+        <DarkModeSwitch isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+      <div className="enigma"  style={{
+          minHeight: "50vh", 
+          width: "50vh",
+          position: "relative",
+          textAlign:'center',
+          placeContent:'center'
+        }}>
+        <p>{secret}</p>
+      </div>
       </div>
     );
   }
 
   return (
-    <div className="secret-retrieval">
-      <h2>You have got a Message 📮</h2>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter password (Optional)"
-          />
-          <button type='submit'>View Secret</button>
-        </form>
-      {error && <p className="error">{error}</p>}
+    <div className="app">
+      <DarkModeSwitch isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+      <div className="enigma">
+          <h2>You have got a Message 📮</h2>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter password (Optional)"
+              />
+              <button type='submit'>View Secret</button>
+            </form>
+          {error && <p className="error">{error}</p>}
+        </div>
     </div>
   );
 }
