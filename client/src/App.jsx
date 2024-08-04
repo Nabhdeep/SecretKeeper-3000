@@ -25,7 +25,7 @@ function App() {
       
     sendData(id , encMsg)
     .then((res)=>{
-      const dummyLink = `${window.location.href}/secret/${id}#${key}`;
+      const dummyLink = `${window.location.href}secret/${id}#${key}`;
       setGeneratedLink(dummyLink);
       setShowResult(true);
     })
