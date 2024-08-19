@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { decryptMessage, hashSHA256 } from './utils';
 import { getSecret } from './services';
 import DarkModeSwitch from './DarkModeSwitch';
+import Footer from './Footer';
 
 
 function SecretRetrieval({ secretId }) {
@@ -59,6 +60,7 @@ function SecretRetrieval({ secretId }) {
   if (secret) {
     return (
       <div className="app">
+        <div className="main-content">
         <DarkModeSwitch isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
       <div className="enigma"  style={{
           minHeight: "50vh", 
@@ -70,11 +72,14 @@ function SecretRetrieval({ secretId }) {
         <p>{secret}</p>
       </div>
       </div>
+      <Footer />
+      </div>
     );
   }
 
   return (
     <div className="app">
+      <div className="main-content">
       <DarkModeSwitch isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
       <div className="enigma">
           <h2>You have got a Message 📮</h2>
@@ -89,6 +94,8 @@ function SecretRetrieval({ secretId }) {
             </form>
           {error && <p className="error">{error}</p>}
         </div>
+        </div>
+        <Footer />
     </div>
   );
 }

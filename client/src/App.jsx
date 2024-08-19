@@ -4,6 +4,7 @@ import {encryptMessage , generateID, hashSHA256 } from './utils/index.js'
 import './App.css';
 import { sendSecret } from './services/index.js';
 import DarkModeSwitch from './DarkModeSwitch.jsx';
+import Footer from './Footer.jsx';
 
 function App() {
   const [secret, setSecret] = useState('');
@@ -78,6 +79,7 @@ function App() {
   if (showResult) {
     return (
       <div className="app">
+        <div className="main-content">
          <DarkModeSwitch isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
         <div className="enigma">
           <h1>SecretKeeper 3000 </h1>
@@ -92,12 +94,15 @@ function App() {
             </button>
           </div>
         </div>
+        </div>
+        <Footer />
       </div>
     );
   }
 
   return (
     <div className="app">
+      <div className="main-content">
       <DarkModeSwitch isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
       <div className="enigma">
         <h1>SecretKeeper 3000</h1>
@@ -150,6 +155,8 @@ function App() {
         <button onClick={handleGenerateLink}>Generate Link</button>
         {error && <p className="error">{error}</p>}
       </div>
+      </div>
+      <Footer />
     </div>
   );
 }
